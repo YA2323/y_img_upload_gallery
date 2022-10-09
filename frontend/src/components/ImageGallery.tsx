@@ -1,4 +1,5 @@
 import useImages from "./useImages";
+import "./style/ImageGallery.css"
 
 export default function ImageGallery() {
 
@@ -18,8 +19,8 @@ export default function ImageGallery() {
     const getImages = images.map((e) => {
 
         return (
-            <div className="Image_List" key={e.id}>
-                <img height={200} width={180} alt={"sample"}
+            <div className={"img"} key={e.id}>
+                <img height={250} width={220} alt={"sample"}
                      src={e.url}></img>
                 <p>{e.name}</p>
             </div>
@@ -34,8 +35,8 @@ export default function ImageGallery() {
                 <button onClick={SubmitFileData}>Submit</button>
             </div>
 
-            <div>
-                {getImages}
+            <div className={"images"}>
+                    {getImages}
             </div>
 
         </div>

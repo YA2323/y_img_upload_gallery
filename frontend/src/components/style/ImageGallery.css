@@ -1,0 +1,21 @@
+.images{
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 70px;
+
+}
+
+.img{
+    padding: 40px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+}
+
+body{
+    background: linear-gradient(45deg,#5b5b5b,#ffffff);
+}
+
+.img:hover{
+    transform: scale(1.3);
+}
