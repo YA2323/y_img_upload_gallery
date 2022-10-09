@@ -1,23 +1,9 @@
-import React, {useEffect, useState} from 'react';
 import './App.css';
-import axios from "axios";
-import {Image} from "./components/Image";
+import useImages from "./components/useImages";
 
 function App() {
 
-    const [images, setImages] = useState<Image[]>([])
-
-    let formData = new FormData()
-
-    useEffect(() => {
-        getAll()
-    }, [])
-
-    const getAll = () => {
-        axios.get("/image")
-            .then((response) => response.data)
-            .then(setImages)
-    }
+    const {addImage, images, formData} = useImages()
 
     const onFileChanged = (event: any) => {
         if (event.target && event.target.files[0]) {
@@ -26,13 +12,9 @@ function App() {
     }
 
     const SubmitFileData = () => {
-        axios.post("/image", formData)
-            .then((response) =>
-                console.log(response))
-            .catch((error) =>
-                console.log(error))
-            .then(getAll)
+        addImage()
     }
+
 
     return (
         <div className="App">
