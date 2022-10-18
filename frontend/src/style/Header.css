@@ -1,3 +1,10 @@
-.h1{
-    color: #282c34;
+h1 {
+    color: #171616;
+}
+
+.header {
+    text-decoration: underline;
+    border-style: groove;
+    border-radius: 0 0 45% 45% / 40%;
+    background: linear-gradient(15deg, #494848, #8d8f8d) fixed;
 }

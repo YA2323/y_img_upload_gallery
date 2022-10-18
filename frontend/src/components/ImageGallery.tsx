@@ -32,8 +32,8 @@ export default function ImageGallery() {
     const getImages = images.map((e) => {
 
         return (
-            <div className={"img"} key={e.id}>
-                <img height={250} width={220} alt={"sample"}
+            <div className={"imgMap"} key={e.id}>
+                <img className={"imgHover"} height={250} width={220} alt={"sample"}
                      src={e.url}></img>
                 <p>{e.name}</p>
                 <button onClick={DeleteImageClick(e.publicId, e.id)}>Delete Image</button>
@@ -44,7 +44,8 @@ export default function ImageGallery() {
     return (
         <div className="Image_Upload">
 
-            <div className="Image_Uploading">
+            <div className="Uploading">
+                <h2>UPLOAD A NEW IMAGE :</h2>
                 <input type={"file"} name={"upload_file"} accept={"image/*"} onChange={onFileChanged}/>
                 <button onClick={SubmitFileDataClick}>Submit</button>
             </div>

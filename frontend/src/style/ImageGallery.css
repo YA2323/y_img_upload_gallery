@@ -1,21 +1,29 @@
-.images{
-    display: inline-grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    margin-top: 70px;
-
+body {
+    background: linear-gradient(15deg, #5b5b5b, #ffffff) fixed;
 }
 
-.img{
+.images {
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 40px;
+}
+
+.imgMap {
     padding: 40px;
     border-width: 1px;
     border-style: solid;
     border-color: black;
 }
 
-body{
-    background: linear-gradient(45deg,#5b5b5b,#ffffff);
+
+.imgHover:hover {
+    transform: scale(1.3);
 }
 
-.img:hover{
-    transform: scale(1.3);
+h2 {
+    font-size: 23px;
+}
+
+.Image_Upload{
+    padding: 10px;
 }
