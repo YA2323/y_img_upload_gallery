@@ -27,4 +27,20 @@ public class ImageController {
     List<Image> getAllImages() {
         return imageService.getAllImages();
     }
+
+    @DeleteMapping("repo/{id}")
+    public ResponseEntity<Void> deleteImageInRepo(@PathVariable String id) {
+        boolean deleteSuccess = imageService.deleteImage(id);
+        return new ResponseEntity<>(deleteSuccess ? HttpStatus.NO_CONTENT : HttpStatus.NOT_FOUND);
+    }
+
+    @DeleteMapping("cloud/{id}")
+    public ResponseEntity<Void> deleteImageInCloud(@PathVariable String id) {
+        try {
+            imageService.deleteImagee(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception exception) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

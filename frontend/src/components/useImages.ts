@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Image} from "./Image";
+import {toast} from "react-toastify";
 
 export default function useImages() {
 
@@ -26,5 +27,30 @@ export default function useImages() {
             .then(getAllImages)
     }
 
-    return {addImage, images, formData}
+    const onErrorFunction = (error: Error) => {
+        toast.error(error.message, {
+                position: toast.POSITION.TOP_LEFT
+            }
+        )
+    }
+
+    const deleteImageInCloud = (id: string) => {
+        return axios.delete(`/image/cloud/${id}`)
+            .then(getAllImages)
+            .catch(
+                error => {
+                    onErrorFunction(error)
+                })
+    }
+
+    const deleteImageInRepo = (id: string) => {
+        return axios.delete(`/image/repo/${id}`)
+            .then(getAllImages)
+            .catch(
+                error => {
+                    onErrorFunction(error)
+                })
+    }
+
+    return {addImage, images, formData, deleteImageInCloud,deleteImageInRepo}
 }
