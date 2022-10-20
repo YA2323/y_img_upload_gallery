@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {Image} from "./Image";
 import {toast} from "react-toastify";
+import {Tag} from "./Tag";
 
 export default function useImages() {
 
@@ -52,5 +53,20 @@ export default function useImages() {
                 })
     }
 
-    return {addImage, images, formData, deleteImageInCloud,deleteImageInRepo}
+    const imageWithDescr = (img: Image, tag: Tag) => {
+        const newAnimalWithPosition: Image = {
+            id: img.id,
+            publicId: img.publicId,
+            url: img.url,
+            name: img.name,
+            type: img.type,
+            tag: tag
+        }
+        return axios.put(`image/tag/${img.id}`, newAnimalWithPosition)
+            .catch(error => {
+                onErrorFunction(error)
+            })
+    }
+
+    return {addImage, images, formData, deleteImageInCloud, deleteImageInRepo, imageWithDescr}
 }

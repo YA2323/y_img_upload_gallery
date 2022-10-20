@@ -5,4 +5,3 @@ public class UploadException extends RuntimeException {
         super(originalFileName + " konnte nicht hochgeladen werden!");
     }
 }
-

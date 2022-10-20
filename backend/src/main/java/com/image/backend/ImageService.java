@@ -37,10 +37,19 @@ public class ImageService {
             String url = (String) responseObj.get("url");
             String name = file.getOriginalFilename();
             String type = file.getContentType();
-            return imageRepo.save(new Image(id, publicID, url, name, type));
+            Tag tag = new Tag("");
+            return imageRepo.save(new Image(id, publicID, url, name, type, tag));
         } catch (IOException e) {
             throw new UploadException(file.getOriginalFilename());
         }
+    }
+
+    public Image imageWithDescription(Image newImage) {
+
+        imageRepo.deleteById(newImage.id());
+        imageRepo.save(newImage);
+
+        return newImage;
     }
 
     public List<Image> getAllImages() {
@@ -48,7 +57,7 @@ public class ImageService {
     }
 
 
-    public boolean deleteImage(String id) {
+    public boolean deleteImageInRepo(String id) {
         if (imageRepo.existsById(id)) {
             imageRepo.deleteById(id);
             return true;
@@ -56,7 +65,7 @@ public class ImageService {
         return false;
     }
 
-    public Map deleteImagee(String id) {
+    public Map deleteImageInCloud(String id) {
         try {
             return cloudinary.uploader().destroy(id, ObjectUtils.emptyMap());
         } catch (Exception e) {

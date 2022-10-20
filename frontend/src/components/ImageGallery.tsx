@@ -1,10 +1,12 @@
 import useImages from "./useImages";
 import "../style/ImageGallery.css"
 import React from "react";
+import {useNavigate} from "react-router-dom";
 
 export default function ImageGallery() {
 
     const {addImage, images, formData, deleteImageInCloud, deleteImageInRepo} = useImages()
+    const navigate = useNavigate();
 
     const onFileChanged = (event: any) => {
         if (event.target && event.target.files[0]) {
@@ -29,6 +31,8 @@ export default function ImageGallery() {
     }
 
 
+
+
     const getImages = images.map((e) => {
 
         return (
@@ -37,6 +41,10 @@ export default function ImageGallery() {
                      src={e.url}></img>
                 <p>{e.name}</p>
                 <button onClick={DeleteImageClick(e.publicId, e.id)}>Delete Image</button>
+                <button onClick={() => {
+                    navigate(`/img/${e.id}`)
+                }}>Details
+                </button>
             </div>
         )
     })

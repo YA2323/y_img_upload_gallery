@@ -1,13 +1,18 @@
 import './App.css';
-import ImageGallery from "./components/ImageGallery";
 import Header from "./components/Header";
+import {HashRouter} from "react-router-dom";
+import AllRoutes from "./components/AllRoutes";
 
 function App() {
 
     return (
         <div className="App">
-            <Header/>
-            <ImageGallery/>
+            <HashRouter>
+                <Header/>
+                <main>
+                    <AllRoutes/>
+                </main>
+            </HashRouter>
         </div>
     );
 }
