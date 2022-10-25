@@ -1,6 +1,6 @@
 import {Image} from "./Image";
 import {useNavigate, useParams} from "react-router-dom";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import useImages from "./useImages";
 import "../style/Details.css"
 
@@ -15,10 +15,20 @@ export default function Details(props: imgProps) {
     const [oneTag, setOneTag] = useState("")
 
     const {id} = useParams();
+
+    useEffect(() => {
+
+    }, [])
+
     const imageToUpdate = props.img.find(item => item.id === id);
     if (!imageToUpdate) {
         return <>
             Image not found</>
+    }
+
+    const handleClick = ()=>{
+        imageWithTags(imageToUpdate, oneTag)
+        setOneTag("")
     }
 
     return (
@@ -40,7 +50,7 @@ export default function Details(props: imgProps) {
                 <div className={"tag"}>
                     <input type={"input"} value={oneTag}
                            onChange={event => setOneTag(event.target.value)}/>
-                    <button onClick={() => imageWithTags(imageToUpdate, oneTag)}>Add Tag</button>
+                    <button onClick={handleClick}>Add Tag</button>
                 </div>
                 <p>TAG: {imageToUpdate.tags}</p>
             </div>
