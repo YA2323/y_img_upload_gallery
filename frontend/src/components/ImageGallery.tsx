@@ -31,20 +31,20 @@ export default function ImageGallery() {
     }
 
 
-
-
     const getImages = images.map((e) => {
 
         return (
             <div className={"imgMap"} key={e.id}>
                 <img className={"imgHover"} height={250} width={220} alt={"sample"}
                      src={e.url}></img>
-                <p>{e.name}</p>
                 <button onClick={DeleteImageClick(e.publicId, e.id)}>Delete Image</button>
                 <button onClick={() => {
                     navigate(`/img/${e.id}`)
                 }}>Details
                 </button>
+                <p>{e.tags[0]}</p>
+                <p>{e.tags[1]}</p>
+                <p>{e.tags[2]}</p>
             </div>
         )
     })
@@ -61,8 +61,6 @@ export default function ImageGallery() {
             <div className={"images"}>
                 {getImages}
             </div>
-
         </div>
     )
-
 }

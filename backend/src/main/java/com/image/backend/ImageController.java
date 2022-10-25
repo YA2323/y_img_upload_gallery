@@ -45,11 +45,11 @@ public class ImageController {
     }
 
     @PutMapping("tag/{id}")
-    public ResponseEntity<Image> addAnimalPosition(
-            @RequestBody Image animalWithPosition) {
-        Image updatedAnimal = imageService.imageWithDescription(animalWithPosition);
+    public ResponseEntity<Image> updateImageWithTag(
+            @RequestBody Image newImage) {
+        Image updatedImage = imageService.updateImageWithTag(newImage);
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(updatedAnimal);
+                .body(updatedImage);
     }
 }

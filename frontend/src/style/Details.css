@@ -1,0 +1,27 @@
+.img {
+    position: relative;
+    right: 400px;
+    top: -370px;
+}
+
+.imgDetails {
+    text-align: left;
+    position: relative;
+    left: 610px;
+    top: 80px;
+}
+
+#list {
+    padding: 30px;
+}
+
+.tag {
+    position: relative;
+    top: 20px
+}
+
+#home {
+    position: relative;
+    bottom: 1000px;
+    right: 570px;
+}

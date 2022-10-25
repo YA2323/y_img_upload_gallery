@@ -26,6 +26,9 @@ public class ImageService {
             "api_secret", "J4itukLEW52USY4_ZP28JS6lkNM",
             "secure", true));
 
+    public List<Image> getAllImages() {
+        return imageRepo.findAll();
+    }
 
     public Image uploadImage(MultipartFile file) {
         try {
@@ -37,23 +40,19 @@ public class ImageService {
             String url = (String) responseObj.get("url");
             String name = file.getOriginalFilename();
             String type = file.getContentType();
-            Tag tag = new Tag("");
-            return imageRepo.save(new Image(id, publicID, url, name, type, tag));
+            String[] tags = {"", "", ""};
+            return imageRepo.save(new Image(id, publicID, url, name, type, tags));
         } catch (IOException e) {
             throw new UploadException(file.getOriginalFilename());
         }
     }
 
-    public Image imageWithDescription(Image newImage) {
+    public Image updateImageWithTag(Image newImage) {
 
         imageRepo.deleteById(newImage.id());
         imageRepo.save(newImage);
 
         return newImage;
-    }
-
-    public List<Image> getAllImages() {
-        return imageRepo.findAll();
     }
 
 
