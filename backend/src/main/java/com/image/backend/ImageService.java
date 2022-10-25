@@ -15,16 +15,12 @@ import java.util.*;
 public class ImageService {
 
     private final ImageRepo imageRepo;
+    private final Cloudinary cloudinary;
 
-    public ImageService(ImageRepo imageRepo) {
+    public ImageService(ImageRepo imageRepo, Cloudinary cloudinary) {
         this.imageRepo = imageRepo;
+        this.cloudinary = cloudinary;
     }
-
-    Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
-            "cloud_name", "daaat5oh4",
-            "api_key", "793415223554377",
-            "api_secret", "J4itukLEW52USY4_ZP28JS6lkNM",
-            "secure", true));
 
     public List<Image> getAllImages() {
         return imageRepo.findAll();
