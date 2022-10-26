@@ -12,7 +12,7 @@ export default function AllRoutes() {
         <>
             <Routes>
                 <Route path={"/"} element={<ImageGallery/>}/>
-                <Route path={"/img/:id"} element={<Details img={imgHook.images}/>}/>
+                <Route path={"/img/:id"} element={<Details img={imgHook.images} getOneImage={imgHook.getOneImage}/>}/>
             </Routes>
         </>
     )

@@ -79,10 +79,16 @@ export default function useImages() {
             tags: tagInput()
         }
         return axios.put(`image/tag/${img.id}`, newImageWithTags)
+            .then(getAllImages)
             .catch(error => {
                 onErrorFunction(error)
             })
     }
 
-    return {addImage, images, formData, deleteImageInCloud, deleteImageInRepo, imageWithTags}
+    const getOneImage = (id: string) => {
+        return axios.get(`image/details/${id}`)
+            .then(response => response.data)
+    }
+
+    return {addImage, images, formData, deleteImageInCloud, deleteImageInRepo, imageWithTags,getOneImage,onErrorFunction}
 }

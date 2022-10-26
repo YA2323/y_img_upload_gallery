@@ -26,6 +26,10 @@ public class ImageService {
         return imageRepo.findAll();
     }
 
+    public Optional<Image> getOneImage(String id) {
+        return imageRepo.findById(id);
+    }
+
     public Image uploadImage(MultipartFile file) {
         try {
             File newFile = File.createTempFile(Objects.requireNonNull(file.getOriginalFilename()), null);
