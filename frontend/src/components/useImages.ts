@@ -53,30 +53,13 @@ export default function useImages() {
     }
 
     const imageWithTags = (img: Image, tag: string) => {
-        const tagInput = () => {
-            let x: any[]
-            if (img.tags[0] === "") {
-                x = [tag, "", ""]
-                return x
-            } else if (img.tags[1] === "") {
-                x = [img.tags[0], tag, ""]
-                return x
-            } else if (img.tags[2] === "") {
-                x = [img.tags[0], img.tags[1], tag]
-                return x
-            } else {
-                x = [img.tags[0], img.tags[1], img.tags[2]]
-                //TOAST
-                return x
-            }
-        }
         const newImageWithTags: Image = {
             id: img.id,
             publicId: img.publicId,
             url: img.url,
             name: img.name,
             type: img.type,
-            tags: tagInput()
+            tags: img.tags.concat(tag)
         }
         return axios.put(`image/tag/${img.id}`, newImageWithTags)
             .then(getAllImages)

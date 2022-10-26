@@ -4,5 +4,6 @@ export type Image = {
     url: string
     name: string
     type: string
-    tags: string[]
+   // tags: string[]
+    tags: Array<string>
 }
