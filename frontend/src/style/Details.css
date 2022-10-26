@@ -22,6 +22,10 @@
 
 #home {
     position: relative;
-    bottom: 1000px;
+    bottom: 1230px;
     right: 570px;
+}
+
+#tags{
+    padding: 20px;
 }

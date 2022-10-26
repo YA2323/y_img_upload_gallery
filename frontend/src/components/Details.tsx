@@ -56,7 +56,7 @@ export default function Details(props: imgProps) {
                            onChange={event => setOneTag(event.target.value)}/>
                     <button onClick={handleClick}>Add Tag</button>
                 </div>
-                <p>TAG: {imageToUpdate?.tags}</p>
+                <p id={"tags"}>{imageToUpdate?.tags.map((i)=> (<li>{i}</li>))}</p>
             </div>
             <button id={"home"} onClick={() => {
                 navigate(`/`)
