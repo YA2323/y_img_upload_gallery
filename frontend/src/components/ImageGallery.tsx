@@ -33,7 +33,6 @@ export default function ImageGallery() {
 
     const getImages = images.map((e) => {
 
-
         return (
             <div className={"imgMap"} key={e.id}>
                 <img className={"imgHover"} height={250} width={220} alt={"sample"}
@@ -43,7 +42,7 @@ export default function ImageGallery() {
                     navigate(`/img/${e.id}`)
                 }}>Details
                 </button>
-                <p>{e.tags.map((i)=> (<li>{i}</li>))}</p>
+                <p>{e.tags.map((i) => (<button >{i.tag}</button>))}</p>
             </div>
         )
     })

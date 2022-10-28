@@ -1,9 +1,10 @@
+import {Tag} from "./Tag";
+
 export type Image = {
     id: string
     publicId: string
     url: string
     name: string
     type: string
-   // tags: string[]
-    tags: Array<string>
+    tags: Array<Tag>
 }

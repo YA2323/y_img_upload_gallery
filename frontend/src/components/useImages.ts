@@ -2,6 +2,8 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {Image} from "./Image";
 import {toast} from "react-toastify";
+import {Tag} from "./Tag";
+
 
 export default function useImages() {
 
@@ -52,16 +54,21 @@ export default function useImages() {
                 })
     }
 
+
     const imageWithTags = (img: Image, tag: string) => {
+        const newTag: Tag = {
+            tag: tag
+        }
+
         const newImageWithTags: Image = {
             id: img.id,
             publicId: img.publicId,
             url: img.url,
             name: img.name,
             type: img.type,
-            tags: img.tags.concat(tag)
+            tags: img.tags.concat(newTag)
         }
-        return axios.put(`image/tag/${img.id}`, newImageWithTags)
+        return axios.put(`image/tag/${img.id}`, newImageWithTags)//{newImageWithTags, tag}
             .then(getAllImages)
             .catch(error => {
                 onErrorFunction(error)
@@ -73,5 +80,14 @@ export default function useImages() {
             .then(response => response.data)
     }
 
-    return {addImage, images, formData, deleteImageInCloud, deleteImageInRepo, imageWithTags,getOneImage,onErrorFunction}
+    return {
+        addImage,
+        images,
+        formData,
+        deleteImageInCloud,
+        deleteImageInRepo,
+        imageWithTags,
+        getOneImage,
+        onErrorFunction,
+    }
 }

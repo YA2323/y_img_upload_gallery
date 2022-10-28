@@ -40,9 +40,8 @@ public class ImageService {
             String url = (String) responseObj.get("url");
             String name = file.getOriginalFilename();
             String type = file.getContentType();
-            List<String> tags = new ArrayList<>();
-            tags.add("TEST");
-            tags.add("TEST2");
+            List<Tag> tags = new ArrayList<>();
+            tags.add(new Tag("TEST"));
             return imageRepo.save(new Image(id, publicID, url, name, type, tags));
         } catch (IOException e) {
             throw new UploadException(file.getOriginalFilename());
@@ -53,7 +52,6 @@ public class ImageService {
 
         imageRepo.deleteById(newImage.id());
         imageRepo.save(newImage);
-
         return newImage;
     }
 
@@ -73,5 +71,4 @@ public class ImageService {
             throw new CloudinaryException();
         }
     }
-
 }

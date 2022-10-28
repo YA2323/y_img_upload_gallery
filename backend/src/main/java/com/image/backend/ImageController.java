@@ -59,4 +59,5 @@ public class ImageController {
                 .status(HttpStatus.OK)
                 .body(updatedImage);
     }
+
 }
