@@ -15,19 +15,19 @@ import java.util.*;
 public class ImageService {
 
     private final ImageRepo imageRepo;
+    private final Cloudinary cloudinary;
 
-    public ImageService(ImageRepo imageRepo) {
+    public ImageService(ImageRepo imageRepo, Cloudinary cloudinary) {
         this.imageRepo = imageRepo;
+        this.cloudinary = cloudinary;
     }
-
-    Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
-            "cloud_name", "daaat5oh4",
-            "api_key", "793415223554377",
-            "api_secret", "J4itukLEW52USY4_ZP28JS6lkNM",
-            "secure", true));
 
     public List<Image> getAllImages() {
         return imageRepo.findAll();
+    }
+
+    public Optional<Image> getOneImage(String id) {
+        return imageRepo.findById(id);
     }
 
     public Image uploadImage(MultipartFile file) {
@@ -40,7 +40,8 @@ public class ImageService {
             String url = (String) responseObj.get("url");
             String name = file.getOriginalFilename();
             String type = file.getContentType();
-            String[] tags = {"", "", ""};
+            List<Tag> tags = new ArrayList<>();
+            tags.add(new Tag("TEST"));
             return imageRepo.save(new Image(id, publicID, url, name, type, tags));
         } catch (IOException e) {
             throw new UploadException(file.getOriginalFilename());
@@ -51,7 +52,6 @@ public class ImageService {
 
         imageRepo.deleteById(newImage.id());
         imageRepo.save(newImage);
-
         return newImage;
     }
 
@@ -64,12 +64,11 @@ public class ImageService {
         return false;
     }
 
-    public Map deleteImageInCloud(String id) {
+    public void deleteImageInCloud(String id) {
         try {
-            return cloudinary.uploader().destroy(id, ObjectUtils.emptyMap());
+            cloudinary.uploader().destroy(id, ObjectUtils.emptyMap());
         } catch (Exception e) {
             throw new CloudinaryException();
         }
     }
-
 }

@@ -42,9 +42,7 @@ export default function ImageGallery() {
                     navigate(`/img/${e.id}`)
                 }}>Details
                 </button>
-                <p>{e.tags[0]}</p>
-                <p>{e.tags[1]}</p>
-                <p>{e.tags[2]}</p>
+                <p>{e.tags.map((i) => (<button >{i.tag}</button>))}</p>
             </div>
         )
     })

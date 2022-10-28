@@ -1,5 +1,7 @@
 package com.image.backend;
 
 
-public record Image(String id, String publicId, String url, String name, String type, String[] tags) {
+import java.util.List;
+
+public record Image(String id, String publicId, String url, String name, String type, List<Tag> tags) {
 }

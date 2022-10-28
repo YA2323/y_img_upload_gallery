@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/image")
@@ -26,6 +27,12 @@ public class ImageController {
     @GetMapping
     List<Image> getAllImages() {
         return imageService.getAllImages();
+    }
+
+
+    @GetMapping("details/{id}")
+    public Optional<Image> getOneImage(@PathVariable String id) {
+        return imageService.getOneImage(id);
     }
 
     @DeleteMapping("repo/{id}")
@@ -52,4 +59,5 @@ public class ImageController {
                 .status(HttpStatus.OK)
                 .body(updatedImage);
     }
+
 }
