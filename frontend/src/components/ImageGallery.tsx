@@ -37,12 +37,14 @@ export default function ImageGallery() {
             <div className={"imgMap"} key={e.id}>
                 <img className={"imgHover"} height={250} width={220} alt={"sample"}
                      src={e.url}></img>
-                <button onClick={DeleteImageClick(e.publicId, e.id)}>Delete Image</button>
-                <button onClick={() => {
+                <div className={"tags"}>
+                    <p id={"tags"}>{e.tags.map((i) => (<button id={"tagsBtn"}>{i.tag}</button>))}</p>
+                </div>
+                <button id={"deleteBtn"} onClick={DeleteImageClick(e.publicId, e.id)}>Delete Image</button>
+                <button id={"detailsBtn"} onClick={() => {
                     navigate(`/img/${e.id}`)
                 }}>Details
                 </button>
-                <p>{e.tags.map((i) => (<button >{i.tag}</button>))}</p>
             </div>
         )
     })

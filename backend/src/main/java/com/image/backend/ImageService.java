@@ -41,7 +41,6 @@ public class ImageService {
             String name = file.getOriginalFilename();
             String type = file.getContentType();
             List<Tag> tags = new ArrayList<>();
-            tags.add(new Tag("TEST"));
             return imageRepo.save(new Image(id, publicID, url, name, type, tags));
         } catch (IOException e) {
             throw new UploadException(file.getOriginalFilename());
