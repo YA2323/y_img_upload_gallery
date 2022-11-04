@@ -30,7 +30,7 @@ h2 {
 
 #deleteBtn{
     background-color: #b25151;
-    border-width: 2.2px;
+    border-width: 1.6px;
     border-style: solid;
     border-color: black;
     padding: 3px;
@@ -39,7 +39,7 @@ h2 {
 
 #detailsBtn{
     background-color: #589d58;
-    border-width: 1.9px;
+    border-width: 1.6px;
     border-style: solid;
     border-color: black;
     padding: 3px;
@@ -56,3 +56,4 @@ h2 {
     border-style: solid;
     border-color: black;
 }
+
