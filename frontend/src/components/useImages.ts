@@ -57,7 +57,8 @@ export default function useImages() {
 
     const imageWithTags = (img: Image, tag: string) => {
         const newTag: Tag = {
-            tag: tag
+            tag: tag,
+           // tagId: randomUUID()
         }
 
         const newImageWithTags: Image = {
@@ -68,7 +69,7 @@ export default function useImages() {
             type: img.type,
             tags: img.tags.concat(newTag)
         }
-        return axios.put(`image/tag/${img.id}`, newImageWithTags)//{newImageWithTags, tag}
+        return axios.put(`image/tag/${img.id}`, newImageWithTags)
             .then(getAllImages)
             .catch(error => {
                 onErrorFunction(error)

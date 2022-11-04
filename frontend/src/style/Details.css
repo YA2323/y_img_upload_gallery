@@ -21,11 +21,14 @@
 }
 
 #home {
-    position: relative;
-    bottom: 1230px;
-    right: 570px;
+    position: absolute;
+    top: 5%;
+    left: 10%;
 }
 
-#tags{
-    padding: 20px;
+#t{
+  padding: 15px
+}
+#tagsBtn{
+    width: 100px;
 }
