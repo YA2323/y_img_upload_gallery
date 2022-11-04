@@ -57,7 +57,6 @@ export default function ImageGallery() {
                 <input type={"file"} name={"upload_file"} accept={"image/*"} onChange={onFileChanged}/>
                 <button onClick={SubmitFileDataClick}>Submit</button>
             </div>
-
             <div className={"images"}>
                 {getImages}
             </div>

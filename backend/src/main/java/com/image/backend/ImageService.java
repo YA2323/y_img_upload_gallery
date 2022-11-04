@@ -34,10 +34,10 @@ public class ImageService {
         try {
             File newFile = File.createTempFile(Objects.requireNonNull(file.getOriginalFilename()), null);
             file.transferTo(newFile);
-            var responseObj = cloudinary.uploader().upload(newFile, ObjectUtils.emptyMap());
+            var result = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
             String id = UUID.randomUUID().toString();
-            String publicID = (String) responseObj.get("public_id");
-            String url = (String) responseObj.get("url");
+            String publicID = (String) result.get("public_id");
+            String url = (String) result.get("url");
             String name = file.getOriginalFilename();
             String type = file.getContentType();
             List<Tag> tags = new ArrayList<>();
