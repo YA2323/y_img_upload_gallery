@@ -34,7 +34,7 @@ public class ImageService {
         try {
             File newFile = File.createTempFile(Objects.requireNonNull(file.getOriginalFilename()), null);
             file.transferTo(newFile);
-            var result = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
+            var result = cloudinary.uploader().upload(newFile, ObjectUtils.emptyMap());
             String id = UUID.randomUUID().toString();
             String publicID = (String) result.get("public_id");
             String url = (String) result.get("url");
