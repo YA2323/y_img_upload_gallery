@@ -29,7 +29,6 @@ public class ImageController {
         return imageService.getAllImages();
     }
 
-
     @GetMapping("details/{id}")
     public Optional<Image> getOneImage(@PathVariable String id) {
         return imageService.getOneImage(id);
@@ -38,7 +37,11 @@ public class ImageController {
     @DeleteMapping("repo/{id}")
     public ResponseEntity<Void> deleteImageInRepo(@PathVariable String id) {
         boolean deleteSuccess = imageService.deleteImageInRepo(id);
-        return new ResponseEntity<>(deleteSuccess ? HttpStatus.NO_CONTENT : HttpStatus.NOT_FOUND);
+        if (deleteSuccess) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("cloud/{id}")
@@ -52,12 +55,16 @@ public class ImageController {
     }
 
     @PutMapping("tag/{id}")
-    public ResponseEntity<Image> updateImageWithTag(
-            @RequestBody Image newImage) {
-        Image updatedImage = imageService.updateImageWithTag(newImage);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(updatedImage);
+    public ResponseEntity<Image> updateImageWithTag(@RequestBody Image newImage) {
+        try {
+            Image updatedImage = imageService.updateImageWithTag(newImage);
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(updatedImage);
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(null);
+        }
     }
-
 }

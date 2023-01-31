@@ -3,6 +3,7 @@ package com.image.backend;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.image.backend.exeptions.CloudinaryException;
+import com.image.backend.exeptions.ImageNotFoundException;
 import com.image.backend.exeptions.UploadException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -48,19 +49,20 @@ public class ImageService {
     }
 
     public Image updateImageWithTag(Image newImage) {
-
-        imageRepo.deleteById(newImage.id());
-        imageRepo.save(newImage);
-        return newImage;
+        if (imageRepo.existsById(newImage.id())) {
+            imageRepo.deleteById(newImage.id());
+            imageRepo.save(newImage);
+            return newImage;
+        }
+        throw new ImageNotFoundException();
     }
-
 
     public boolean deleteImageInRepo(String id) {
         if (imageRepo.existsById(id)) {
             imageRepo.deleteById(id);
             return true;
         }
-        return false;
+        throw new ImageNotFoundException();
     }
 
     public void deleteImageInCloud(String id) {

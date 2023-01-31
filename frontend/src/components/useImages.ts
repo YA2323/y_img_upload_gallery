@@ -58,7 +58,6 @@ export default function useImages() {
     const imageWithTags = (img: Image, tag: string) => {
         const newTag: Tag = {
             tag: tag,
-           // tagId: randomUUID()
         }
 
         const newImageWithTags: Image = {

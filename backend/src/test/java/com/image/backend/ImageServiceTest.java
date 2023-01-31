@@ -60,7 +60,6 @@ class ImageServiceTest {
         assertThat(actual).isEqualTo(expected);
     }
 
-
     @Test
     void uploadImage() throws IOException {
         tags.add(new com.image.backend.Tag("TEST"));
@@ -68,11 +67,12 @@ class ImageServiceTest {
         File file = new File(Objects.requireNonNull(this.getClass().getClassLoader().getResource("Michael_jordan.png")).getFile());
         System.out.println(file);
         when(cloudinary.uploader()).thenReturn(uploader);
-        when(uploader.upload(file, ObjectUtils.emptyMap())).thenReturn(Map.of("2", "22", "xyz.de", "Test2", "jpg", tags));
+        when(uploader.upload(file, ObjectUtils.emptyMap())).thenReturn(Map.of("2", "22", "xyz.de", "Test2", "png", tags));
 
         Map<String, String> actual = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
-        assertThat(actual).isEqualTo(Map.of("2", "22", "xyz.de", "Test2", "jpg", tags));
+        assertThat(actual).isEqualTo(Map.of("2", "22", "xyz.de", "Test2", "png", tags));
     }
+
 
     @Test
     void updateImageWithTag() {
@@ -88,7 +88,6 @@ class ImageServiceTest {
 
         assertThat(actual).isEqualTo(oneImage);
     }
-
 
     @Test
     void deleteImageInRepo() {
